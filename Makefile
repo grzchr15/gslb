@@ -1,5 +1,6 @@
 update-binary:
 	mkdir -p  /home/jfesler/work/src
+	git pull
 	env GOROOT=/usr/local/go GOPATH=/home/jfesler/work /usr/local/go/bin/go get -u github.com/falling-sky/go-gslb
 	env GOROOT=/usr/local/go GOPATH=/home/jfesler/work /usr/local/go/bin/go build github.com/falling-sky/go-gslb
 	sudo setcap 'cap_net_bind_service=+ep' `pwd`/go-gslb
