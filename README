@@ -2,10 +2,13 @@ Depends on:
 
    go 1.52 -  set up your work directory.
 
-   git clone jfesler@gigo.com:/home/jfesler/gitrepo/go-gslb.git
-   go build gigo.com/go-gslb
-
+   go get github.com/falling-sky/go-gslb
+   go build github.com/falling-sky/go-gslb
    sudo setcap 'cap_net_bind_service=+ep' `pwd`/go-gslb
+
+Or, see https://github.com/falling-sky/go-gslb 
+
+---
 
 Makefile		Gets the latest everything, installs, (up)starts
 GeoIPASNum2.csv		MaxMind GeoLite IP to ASN (IPv4)
