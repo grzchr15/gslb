@@ -1,0 +1,18 @@
+Depends on:
+
+   go 1.52 -  set up your work directory.
+
+   git clone jfesler@gigo.com:/home/jfesler/gitrepo/go-gslb.git
+   go build gigo.com/go-gslb
+
+   sudo setcap 'cap_net_bind_service=+ep' `pwd`/go-gslb
+
+   
+MaxMind data: GeoLite IP to ASN data
+GeoIPASNum2.csv		MaxMind GeoLite IP to ASN (IPv4)
+GeoIPASNum2v6.csv	MaxMind GeoLite IP to ASN (IPv6)
+go-gslb			Binary from "go build gigo.com/go-gslb"
+server.conf		Server configs - IP info, etc.
+zone.conf		Zone data including health checks
+
+
