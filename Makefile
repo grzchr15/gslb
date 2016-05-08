@@ -1,14 +1,24 @@
 update-binary:
 	mkdir -p  $(HOME)/work/src
 	git pull
-	env GOROOT=/usr/local/go GOPATH=$(HOME)/work /usr/local/go/bin/go get -u github.com/falling-sky/go-gslb
+	env GOROOT=/usr/local/go GOPATH=$(HOME)/work /usr/local/go/bin/go get -u -d github.com/falling-sky/go-gslb
 	env GOROOT=/usr/local/go GOPATH=$(HOME)/work /usr/local/go/bin/go build github.com/falling-sky/go-gslb
+	ls -l `pwd`/go-gslb
 	sudo setcap 'cap_net_bind_service=+ep' `pwd`/go-gslb
-	sudo cp upstart/gslb.conf /etc/init/
 	sudo service gslb stop ; true
 	pkill -x go-gslb ; true
 	sudo service gslb start
-	sudo tail -f /var/log/upstart/gslb.log
+	sleep 1
+	ps auxww |grep go-gsl
+
+install-upstart:
+	sudo cp upstart/gslb.conf /etc/init/
+
+install-systemd:
+	sudo cp systemd/gslb.service /lib/systemd/system/gslb.service
+	sudo systemctl enable gslb.service
+	sudo systemctl restart gslb.service
+	
 
 update-maxmind:
 	mkdir -p download

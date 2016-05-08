@@ -1,0 +1,11 @@
+[Unit] 
+Description=falliny-sky go-gslb dns
+
+[Service]
+User=jfesler
+ExecStart=/home/jfesler/gslb/go-gslb -etc /home/jfesler/gslb 
+
+[Install]
+WantedBy=multi-user.target
+Alias=gslb.service
+
