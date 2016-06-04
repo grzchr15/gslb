@@ -11,6 +11,19 @@ update-binary:
 	sleep 1
 	ps auxww |grep go-gsl
 
+debug:
+	mkdir -p  $(HOME)/work/src
+	git pull
+	env GOROOT=/usr/local/go GOPATH=$(HOME)/work /usr/local/go/bin/go get -u -d github.com/falling-sky/go-gslb
+	env GOROOT=/usr/local/go GOPATH=$(HOME)/work /usr/local/go/bin/go build github.com/falling-sky/go-gslb
+	ls -l `pwd`/go-gslb
+	sudo setcap 'cap_net_bind_service=+ep' `pwd`/go-gslb
+	sudo service gslb stop ; true
+	pkill -x go-gslb ; true
+	./go-gslb -debug -etc .
+
+
+
 install-upstart:
 	sudo cp upstart/gslb.conf /etc/init/
 
