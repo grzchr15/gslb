@@ -1,3 +1,5 @@
+all:	update-binary update-maxmind
+
 update-binary:
 	mkdir -p  $(HOME)/work/src
 	git pull
