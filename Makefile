@@ -1,4 +1,4 @@
-all:	update-binary update-maxmind
+all:	update-binary 
 
 update-binary:
 	mkdir -p  $(HOME)/work/src
